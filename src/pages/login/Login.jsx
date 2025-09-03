@@ -5,8 +5,8 @@ import Google from "../../shared/Google";
 import Divider from "../../shared/Divider";
 const Login = () => {
   return (
-    <div className="w-full min-h-screen flex items-center justify-center">
-      <div className="flex flex-col lg:flex-row items-center mb-8 justify-between gap-6 md:gap-16 lg:gap-24">
+    <div className="w-full min-h-screen flex justify-center items-center">
+      <div className="flex flex-col lg:flex-row items-center mb-8 justify-between gap-8 md:gap-24 lg:gap-64">
         <div className="">
           <img className="max-w-xl w-full mx-auto" src={login} alt="" />
         </div>
