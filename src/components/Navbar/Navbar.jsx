@@ -1,3 +1,4 @@
+import { Link } from "react-router";
 import {
   Navbar,
   NavBody,
@@ -19,7 +20,7 @@ export function NavbarDemo() {
     },
     {
       name: "Shop",
-      link: "#",
+      link: "/shop",
     },
     {
       name: "Contact",
@@ -37,8 +38,12 @@ export function NavbarDemo() {
           <NavbarLogo />
           <NavItems items={navItems} />
           <div className="flex items-center gap-4">
-            <NavbarButton className={`bg-amber-600`}>Login</NavbarButton>
-            <NavbarButton variant="primary">Book a call</NavbarButton>
+            <NavbarButton
+              href={`/login`}
+              className={`bg-primary px-6 text-white`}
+            >
+              Login
+            </NavbarButton>
           </div>
         </NavBody>
 
@@ -57,17 +62,22 @@ export function NavbarDemo() {
             onClose={() => setIsMobileMenuOpen(false)}
           >
             {navItems.map((item, idx) => (
-              <a
+              <Link
                 key={`mobile-link-${idx}`}
-                href={item.link}
+                to={item.link}
                 onClick={() => setIsMobileMenuOpen(false)}
-                className="relative text-neutral-600 dark:text-neutral-300"
+                className="relative text-neutral-600 font-primary dark:text-neutral-300"
               >
                 <span className="block">{item.name}</span>
-              </a>
+              </Link>
             ))}
             <div className="flex w-full flex-col gap-4">
-              <button className="bg-white p-2 text-black rounded">Login</button>
+               <NavbarButton
+              href={`/login`}
+              className={`bg-primary px-6 text-white`}
+            >
+              Login
+            </NavbarButton>
             </div>
           </MobileNavMenu>
         </MobileNav>

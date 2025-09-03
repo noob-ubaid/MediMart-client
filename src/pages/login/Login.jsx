@@ -1,11 +1,13 @@
 import React from "react";
 import login from "/login.png";
 import { Link } from "react-router";
+import Google from "../../shared/Google";
+import Divider from "../../shared/Divider";
 const Login = () => {
   return (
     <div className="w-full min-h-screen flex items-center justify-center">
-      <div className="flex flex-col lg:flex-row items-center justify-between gap-6 md:gap-16 lg:gap-24">
-        <div>
+      <div className="flex flex-col lg:flex-row items-center mb-8 justify-between gap-6 md:gap-16 lg:gap-24">
+        <div className="">
           <img className="max-w-xl w-full mx-auto" src={login} alt="" />
         </div>
         <div className="px-4 md:px-0">
@@ -40,7 +42,7 @@ const Login = () => {
                 <a className="link link-hover font-secondary">Forgot password?</a>
               </div>
 
-              <button type="submit" className="bg-[#407BFF] text-white py-2 rounded font-primary font-medium mt-4 w-full">
+              <button type="submit" className="bg-primary text-white py-2 rounded font-primary font-medium mt-4 w-full">
                 Login
               </button>
 
@@ -51,6 +53,8 @@ const Login = () => {
                 </Link>
               </p>
             </form>
+            <Divider/>
+            <Google/>
           </div>
         </div>
       </div>
