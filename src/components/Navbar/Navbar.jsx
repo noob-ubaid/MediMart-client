@@ -10,11 +10,14 @@ import {
   MobileNavToggle,
   MobileNavMenu,
 } from "./resizable-navbar";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import useAuth from "../../hooks/useAuth";
+import { div } from "motion/react-client";
+import Profile from "../../shared/Profile";
 
 export function NavbarDemo() {
-  const { user } = useAuth();
+  const { user, loading, setProfile, profile } = useAuth();
+    const dropdownRef = useRef();
   const navItems = [
     {
       name: "Home",
@@ -29,9 +32,19 @@ export function NavbarDemo() {
       link: "#contact",
     },
   ];
-
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setProfile(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-
+  if (loading) return <p>helo</p>;
   return (
     <div className="relative w-full">
       <Navbar>
@@ -40,13 +53,23 @@ export function NavbarDemo() {
           <NavbarLogo />
           <NavItems items={navItems} />
           <div className="flex items-center gap-4">
-            <NavbarButton
-              href={`/login`}
-              className={`bg-primary px-6 text-white`}
-            >
-              Login
-            </NavbarButton>
-             {user && <p>{user.displayName}</p>}
+            {!user ? (
+              <NavbarButton
+                href={`/login`}
+                className={`bg-primary px-6 text-white`}
+              >
+                Login
+              </NavbarButton>
+            ) : (
+              <NavbarButton ref={dropdownRef} variant="transparent" className={`bg-transparent`}>
+                <img
+                  onClick={() => setProfile(!profile)}
+                  className="size-10 md:size-12 rounded-full bg-center"
+                  src={user.photoURL}
+                />
+                {profile && <Profile/>}
+              </NavbarButton>
+            )}
           </div>
         </NavBody>
 
@@ -54,10 +77,25 @@ export function NavbarDemo() {
         <MobileNav>
           <MobileNavHeader>
             <NavbarLogo />
-            <MobileNavToggle
-              isOpen={isMobileMenuOpen}
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            />
+            <div className="flex items-center gap-4">
+              {!user ? (
+                <NavbarButton
+                  href={`/login`}
+                  className={`bg-primary px-6 text-white`}
+                >
+                  Login
+                </NavbarButton>
+              ) : (
+                <img
+                  className="size-10 md:size-12 rounded-full bg-center"
+                  src={user.photoURL}
+                />
+              )}
+              <MobileNavToggle
+                isOpen={isMobileMenuOpen}
+                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              />
+            </div>
           </MobileNavHeader>
 
           <MobileNavMenu
@@ -74,15 +112,7 @@ export function NavbarDemo() {
                 <span className="block">{item.name}</span>
               </Link>
             ))}
-            <div className="flex w-full flex-col gap-4">
-              <NavbarButton
-                href={`/login`}
-                className={`bg-primary px-6 text-white`}
-              >
-                Login
-              </NavbarButton>
-             
-            </div>
+            <div className="flex w-full flex-col gap-4"></div>
           </MobileNavMenu>
         </MobileNav>
       </Navbar>

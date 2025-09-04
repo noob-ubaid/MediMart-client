@@ -11,9 +11,10 @@ import {
 import { auth } from "../Firebase/Firebase.config";
 export const AuthContext = createContext();
 
-const AuthProvider = ({children}) => {
+const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [profile, setProfile] = useState(false);
   const provider = new GoogleAuthProvider();
   const login = (email, password) => {
     return signInWithEmailAndPassword(auth, email, password);
@@ -46,6 +47,8 @@ const AuthProvider = ({children}) => {
     login,
     setUser,
     signUp,
+    profile,
+    setProfile,
     google,
     updateUserProfile,
   };
