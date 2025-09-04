@@ -11,8 +11,10 @@ import {
   MobileNavMenu,
 } from "./resizable-navbar";
 import { useState } from "react";
+import useAuth from "../../hooks/useAuth";
 
 export function NavbarDemo() {
+  const { user } = useAuth();
   const navItems = [
     {
       name: "Home",
@@ -44,6 +46,7 @@ export function NavbarDemo() {
             >
               Login
             </NavbarButton>
+             {user && <p>{user.displayName}</p>}
           </div>
         </NavBody>
 
@@ -72,12 +75,13 @@ export function NavbarDemo() {
               </Link>
             ))}
             <div className="flex w-full flex-col gap-4">
-               <NavbarButton
-              href={`/login`}
-              className={`bg-primary px-6 text-white`}
-            >
-              Login
-            </NavbarButton>
+              <NavbarButton
+                href={`/login`}
+                className={`bg-primary px-6 text-white`}
+              >
+                Login
+              </NavbarButton>
+             
             </div>
           </MobileNavMenu>
         </MobileNav>

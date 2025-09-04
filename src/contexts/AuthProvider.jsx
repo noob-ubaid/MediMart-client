@@ -1,4 +1,4 @@
-import { Children, createContext, useEffect, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import {
   createUserWithEmailAndPassword,
   GoogleAuthProvider,
@@ -11,14 +11,14 @@ import {
 import { auth } from "../Firebase/Firebase.config";
 export const AuthContext = createContext();
 
-const AuthProvider = () => {
+const AuthProvider = ({children}) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
   const provider = new GoogleAuthProvider();
   const login = (email, password) => {
     return signInWithEmailAndPassword(auth, email, password);
   };
-  const register = (email, password) => {
+  const signUp = (email, password) => {
     return createUserWithEmailAndPassword(auth, email, password);
   };
   const google = () => {
@@ -44,11 +44,12 @@ const AuthProvider = () => {
     user,
     logOut,
     login,
-    register,
+    setUser,
+    signUp,
     google,
     updateUserProfile,
   };
-  return <AuthContext value={data}>{Children}</AuthContext>;
+  return <AuthContext value={data}>{children}</AuthContext>;
 };
 
 export default AuthProvider;
