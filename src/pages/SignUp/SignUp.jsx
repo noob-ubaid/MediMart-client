@@ -8,6 +8,7 @@ import axios from "axios";
 
 const SignUp = () => {
   const [image, setImage] = useState(null);
+  const [url, setUrl] = useState('')
   const handleImageUpload = async () => {
     try {
       if (!image) return toast.error("Upload your image");
