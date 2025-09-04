@@ -13,10 +13,10 @@ const SignUp = () => {
       if (!image) return toast.error("Upload your image");
       const imageData = new FormData();
       imageData.append("file", image);
-      imageData.append("upload_preset", "Medimart");
-      imageData.append("cloud_name", "dexeuwfzo");
+      imageData.append("upload_preset", import.meta.env.VITE_UPLOAD_PRESET);
+      imageData.append("cloud_name", import.meta.env.VITE_CLOUD_NAME);
       const { data } = await axios.post(
-        "https://api.cloudinary.com/v1_1/dexeuwfzo/image/upload",
+        `https://api.cloudinary.com/v1_1/${import.meta.env.VITE_CLOUD_NAME}/image/upload`,
         imageData
       );
       console.log(data);
