@@ -8,8 +8,11 @@ import useAuth from "../../hooks/useAuth";
 import toast from "react-hot-toast";
 import { IoEye } from "react-icons/io5";
 import { IoEyeOff } from "react-icons/io5";
+import ForgotPasswordModal from "../../shared/ForgotPasswordModal";
+import { Button } from "@headlessui/react";
 const Login = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const { login } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
@@ -20,12 +23,20 @@ const Login = () => {
   } = useForm();
 
   const handleForm = (data) => {
-    login(data.email, data.password).then((result) => {
+    login(data.email, data.password)
+    .then((result) => {
       const user = result.user;
       toast.success("Successfully logged in");
       navigate(`${location.state ? location.state : "/"}`);
-    });
+    }).catch(error => toast.error("Something went wrong"))
   };
+  function open() {
+    setIsModalOpen(true);
+  }
+
+  function close() {
+    setIsModalOpen(false);
+  }
 
   return (
     <div className="w-full flex items-center lg:h-[calc(100vh-60px)] justify-center">
@@ -100,15 +111,18 @@ const Login = () => {
               )}
 
               <div className="mt-2 flex justify-between">
-                <label className="flex items-center text-white font-secondary text-[15px] sm:text-base gap-1 md:gap-2">
+                <label className="flex items-center text-white font-secondary text-[14px] sm:text-base gap-1 md:gap-2">
                   <input type="checkbox" />
                   Remember me
                 </label>
-                <a className="link link-hover text-white text-[15px] sm:text-base font-secondary">
+                <Button
+                  type="button"
+                  onClick={open}
+                  className="link link-hover cursor-pointer text-white text-[14px] sm:text-base font-secondary"
+                >
                   Forgot password?
-                </a>
+                </Button>
               </div>
-
               <button
                 type="submit"
                 className="bg-primary cursor-pointer text-white py-2 rounded font-primary font-medium mt-4 w-full"
@@ -123,6 +137,15 @@ const Login = () => {
                 </Link>
               </p>
             </form>
+            {isModalOpen && (
+              <ForgotPasswordModal
+                open={open}
+                close={close}
+                isModalOpen={isModalOpen}
+                setIsModalOpen={setIsModalOpen}
+              />
+            )}
+
             <Divider />
             <Google />
           </div>

@@ -120,7 +120,7 @@ const SignUp = () => {
                 </label>
                 <div className="relative">
                   <input
-                    type={isOpen ? 'text' : 'password'}
+                    type={isOpen ? "text" : "password"}
                     {...register("password", {
                       required: "Password is required",
                       minLength: {
