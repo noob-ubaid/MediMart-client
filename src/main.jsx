@@ -10,7 +10,11 @@ createRoot(document.getElementById("root")).render(
   <StrictMode>
     <AuthProvider>
       <RouterProvider router={router} />
-      <Toaster />
+      <Toaster
+        toastOptions={{
+          className: "font-semibold font-secondary py-2 px-4",
+        }}
+      />
     </AuthProvider>
   </StrictMode>
 );

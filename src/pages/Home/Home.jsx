@@ -1,10 +1,9 @@
 import React from 'react';
-import { NavbarDemo } from '../../components/Navbar/Navbar';
 
 const Home = () => {
     return (
-        <div>
-            <NavbarDemo/>
+        <div className='min-h-[2000px]'>
+        fdsf
         </div>
     );
 };

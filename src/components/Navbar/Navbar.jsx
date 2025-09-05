@@ -1,4 +1,3 @@
-
 import React, { useRef, useState } from "react";
 import { Link } from "react-router";
 import {
@@ -31,7 +30,7 @@ export function NavbarDemo() {
   if (loading) return <p>Loading...</p>;
 
   return (
-    <div className="relative w-full">
+    <div className=" w-full sticky top-0">
       <Navbar>
         {/* Desktop Navigation */}
         <NavBody>
@@ -39,7 +38,10 @@ export function NavbarDemo() {
           <NavItems items={navItems} />
           <div className="flex items-center gap-4">
             {!user ? (
-              <NavbarButton href={`/login`} className={`bg-primary px-6 text-white`}>
+              <NavbarButton
+                href={`/login`}
+                className={`bg-white px-6 cursor-pointer font-primary rounded mr-2 py-2.5  text-black`}
+              >
                 Login
               </NavbarButton>
             ) : (
@@ -66,7 +68,10 @@ export function NavbarDemo() {
             <NavbarLogo />
             <div className="flex items-center gap-4">
               {!user ? (
-                <NavbarButton href={`/login`} className={`bg-primary px-6 text-white`}>
+                <NavbarButton
+                  href={`/login`}
+                  className={`bg-white px-5 cursor-pointer font-primary rounded  py-2  text-black`}
+                >
                   Login
                 </NavbarButton>
               ) : (
@@ -84,11 +89,17 @@ export function NavbarDemo() {
                   />
                 </div>
               )}
-              <MobileNavToggle isOpen={isMobileMenuOpen} onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} />
+              <MobileNavToggle
+                isOpen={isMobileMenuOpen}
+                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              />
             </div>
           </MobileNavHeader>
 
-          <MobileNavMenu isOpen={isMobileMenuOpen} onClose={() => setIsMobileMenuOpen(false)}>
+          <MobileNavMenu
+            isOpen={isMobileMenuOpen}
+            onClose={() => setIsMobileMenuOpen(false)}
+          >
             {navItems.map((item, idx) => (
               <Link
                 key={`mobile-link-${idx}`}
@@ -103,10 +114,9 @@ export function NavbarDemo() {
         </MobileNav>
       </Navbar>
 
-      {user && profile && activeAnchorRef && <Profile anchorRef={activeAnchorRef} />}
-
-      <div style={{ minHeight: 1200 }}>
-      </div>
+      {user && profile && activeAnchorRef && (
+        <Profile anchorRef={activeAnchorRef} />
+      )}
     </div>
   );
 }

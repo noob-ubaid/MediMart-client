@@ -84,7 +84,7 @@ const Profile = ({ anchorRef }) => {
 
         <button
           onClick={handleLogout}
-          className="mt-3 w-full px-3 py-2 font-secondary rounded bg-primary"
+          className="mt-3 cursor-pointer w-full px-3 py-2 font-secondary rounded bg-primary/90 transition-colors hover:bg-primary duration-300"
         >
           Logout
         </button>
