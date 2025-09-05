@@ -30,7 +30,7 @@ export function NavbarDemo() {
   if (loading) return <p>Loading...</p>;
 
   return (
-    <div className=" w-full sticky top-0">
+    <div className="w-full sticky top-0">
       <Navbar>
         {/* Desktop Navigation */}
         <NavBody>

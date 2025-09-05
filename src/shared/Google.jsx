@@ -17,9 +17,9 @@ const Google = () => {
     .catch(error => toast.error(error))
   }
   return (
-    <button onClick={googleLogin} className="flex items-center cursor-pointer justify-center mb-1 py-1.5 rounded gap-2 w-full border border-gray-300 text-center">
+    <button onClick={googleLogin} className="flex items-center cursor-pointer justify-center mb-1 py-1.5 rounded gap-2 w-full border border-gray-700 text-center">
       <FcGoogle size={22} />
-      <span className="font-primary font-bold ">
+      <span className="font-primary text-white font-bold ">
         Login With Google
       </span>
     </button>
