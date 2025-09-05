@@ -7,10 +7,12 @@ import { Link, useLocation, useNavigate } from "react-router";
 import toast from "react-hot-toast";
 import axios from "axios";
 import { useForm } from "react-hook-form";
+import { IoEye, IoEyeOff } from "react-icons/io5";
 
 const SignUp = () => {
   const { signUp, updateUserProfile, user, setUser } = useAuth();
   const [image, setImage] = useState(null);
+  const [isOpen, setIsOpen] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
   const {
@@ -75,7 +77,7 @@ const SignUp = () => {
                   type="text"
                   name="name"
                   {...register("name", { required: "Name is required" })}
-                  className="input font-secondary border text-white border-gray-700 border-gray-300 rounded mt-1 p-1.5 outline-none w-full mb-2"
+                  className="input font-secondary border text-white border-gray-700  rounded mt-1 p-1.5 outline-none w-full mb-2"
                   placeholder="Enter your name"
                 />
                 {errors.name && (
@@ -116,18 +118,35 @@ const SignUp = () => {
                 <label className="label text-white border-gray-700 text-[14px] font-secondary font-medium mb-1">
                   Password
                 </label>
-                <input
-                  type="password"
-                  {...register("password", {
-                    required: "Password is required",
-                    minLength: {
-                      value: 8,
-                      message: "Password must be 8 characters or above",
-                    },
-                  })}
-                  className="input font-secondary border text-white border-gray-700  rounded mt-1 p-1.5 outline-none w-full mb-2"
-                  placeholder="Password"
-                />
+                <div className="relative">
+                  <input
+                    type={isOpen ? 'text' : 'password'}
+                    {...register("password", {
+                      required: "Password is required",
+                      minLength: {
+                        value: 8,
+                        message: "Password must be 8 characters or above",
+                      },
+                    })}
+                    className="input font-secondary border text-white border-gray-700  rounded mt-1 p-1.5 outline-none w-full mb-2"
+                    placeholder="Password"
+                  />
+                  {!isOpen ? (
+                    <IoEye
+                      onClick={() => setIsOpen(true)}
+                      className="absolute right-4 top-3 cursor-pointer"
+                      color="white"
+                      size={21}
+                    />
+                  ) : (
+                    <IoEyeOff
+                      onClick={() => setIsOpen(false)}
+                      className="absolute right-4 top-3 cursor-pointer"
+                      color="white"
+                      size={21}
+                    />
+                  )}
+                </div>
                 {errors.password && (
                   <p className="text-red-500 font-secondary w-full text-sm mt-0">
                     {errors.password.message}
