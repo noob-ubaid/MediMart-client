@@ -10,9 +10,10 @@ import { useForm } from "react-hook-form";
 import { IoEye, IoEyeOff } from "react-icons/io5";
 import { GridBackgroundDemo } from "../../components/backgroundColor/Background";
 import Logo from "../../shared/Logo";
+import { userDB } from "../../lib/userDb";
 
 const SignUp = () => {
-  const { signUp, updateUserProfile, user, setUser } = useAuth();
+  const { signUp, updateUserProfile, setUser } = useAuth();
   const [image, setImage] = useState(null);
   const [isOpen, setIsOpen] = useState(false);
   const navigate = useNavigate();
@@ -36,12 +37,20 @@ const SignUp = () => {
       );
       const photo = imgUrl.secure_url;
       signUp(data.email, data.password)
-        .then(async (result) => {
+        .then((result) => {
           const user = result.user;
           updateUserProfile({ displayName: data.name, photoURL: photo })
-            .then(() => {
+            .then(async () => {
               toast.success("Successfully logged in");
               setUser({ ...user, displayName: data.name, photoURL: photo });
+              const userData = {
+                name: user.displayName,
+                email: user.email,
+                role: "user",
+                photo: user.photoURL,
+                createdAt: new Date().toISOString(),
+              };
+              await userDB(userData);
             })
             .catch((error) => {
               toast(error);
@@ -58,11 +67,10 @@ const SignUp = () => {
   return (
     <GridBackgroundDemo>
       <div className="max-w-[1500px] mx-auto">
-         <div className="pt-6">
+        <div className="pt-6 ml-4">
           <Logo />
         </div>
         <div className="w-full lg:h-[calc(100vh-70px)]  flex justify-center items-center">
-          
           <div className="flex flex-col lg:flex-row items-center mb-8 justify-between gap-8 md:gap-24 lg:gap-64">
             <div className="">
               <img

@@ -43,11 +43,11 @@ const Login = () => {
   }
   return (
     <GridBackgroundDemo>
-      <div className="max-w-[1500px] mx-auto">
-        <div className="pt-6">
+      <div className="max-w-[1500px] mx-auto py-4">
+        <div className="pt-6 ml-4">
           <Logo />
         </div>
-        <div className=" flex items-center lg:h-[calc(100vh-80px)] justify-center">
+        <div className=" flex items-center lg:h-[calc(100vh-100px)] justify-center">
           <div className="flex flex-col lg:flex-row items-center justify-center   w-full">
             {/* Left Side - Image */}
             <div className=" md:w-1/2 w-full ">
