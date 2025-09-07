@@ -7,12 +7,10 @@ const MainLayout = () => {
   return (
     <>
       <GridBackgroundDemo>
-        <div className="">
           <NavbarDemo />
           <div className="max-w-[1500px] mx-auto px-4 lg:px-0">
             <Outlet />
           </div>
-        </div>
       </GridBackgroundDemo>
     </>
   );
