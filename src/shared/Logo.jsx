@@ -8,10 +8,10 @@ const Logo = () => {
       to={`/`}
       className="relative z-20 mr-4 flex items-center space-x-2 px-2 py-1  font-normal text-black"
     >
-      <p className="bg-black p-2 rounded-sm">
-        <FaPlus className="text-white font-bold" />
+      <p className="bg-white p-2 rounded-sm">
+        <FaPlus className="text-black font-bold" />
       </p>
-      <span className="font-bold text-black font-primary text-2xl dark:text-black">
+      <span className="font-bold text-white font-primary text-2xl ">
         MediMart
       </span>
     </Link>

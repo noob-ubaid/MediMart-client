@@ -12,20 +12,19 @@ import { IoMdClose } from "react-icons/io";
 import useAuth from "../hooks/useAuth";
 import toast from "react-hot-toast";
 const ForgotPasswordModal = ({ isModalOpen, close }) => {
-  const {resetPassword} = useAuth()
+  const { resetPassword } = useAuth();
   const {
     handleSubmit,
     register,
     formState: { errors },
   } = useForm();
-  const handleResetPassword = data => {
+  const handleResetPassword = (data) => {
     resetPassword(data.email)
-    .then(result => {
-      toast.success("Check your email")
-      console.log(result)
-    })
-    .catch(error => console.log(error))
-  }
+      .then(() => {
+        toast.success("Check your email");
+      })
+      .catch((error) => console.log(error));
+  };
   return (
     <Transition appear show={isModalOpen} as={Fragment}>
       <Dialog
