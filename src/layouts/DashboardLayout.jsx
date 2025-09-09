@@ -54,7 +54,7 @@ export function DashboardLayout() {
         <FaHistory className="h-5 w-5 shrink-0 text-neutral-200 dark:text-neutral-200" />
       ),
     },
-  ]
+  ];
   const [open, setOpen] = useState(false);
   return (
     <div
@@ -74,16 +74,17 @@ export function DashboardLayout() {
             </div>
           </div>
           <div>
-           
             <div className="flex items-center gap-2">
               <img
-                    src={user?.photoURL}
-                    className="h-8 w-8 shrink-0 rounded-full"
-                    width={50}
-                    height={50}
-                    alt="Avatar"
-                  />
-                  {open && <p className="text-white shrink-0">{user?.displayName}</p>}
+                src={user?.photoURL}
+                className="h-8 w-8 shrink-0 rounded-full"
+                width={50}
+                height={50}
+                alt="Avatar"
+              />
+              {open && (
+                <p className="text-white shrink-0 font-secondary font-medium">{user?.displayName}</p>
+              )}
             </div>
           </div>
         </SidebarBody>
@@ -124,8 +125,8 @@ export const LogoIcon = () => {
 const Dashboard = () => {
   return (
     <div className="flex flex-1">
-      <div className="flex h-full w-full flex-1 flex-col gap-2 rounded-tl-2xl border border-neutral-700 bg-black p-2 md:p-10 dark:border-neutral-700 dark:bg-black">
-        <Outlet/>
+      <div className="flex min-h-[calc(100vh - 0px)] w-full flex-1 flex-col gap-2 rounded-tl-2xl border border-neutral-700 bg-black p-2 md:p-10 dark:border-neutral-700 dark:bg-black">
+        <Outlet />
       </div>
     </div>
   );

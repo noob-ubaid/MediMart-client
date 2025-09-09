@@ -11,6 +11,7 @@ import { IoEye, IoEyeOff } from "react-icons/io5";
 import { GridBackgroundDemo } from "../../components/backgroundColor/Background";
 import Logo from "../../shared/Logo";
 import { userDB } from "../../lib/userDb";
+import useUploadImage from "../../hooks/useUploadImage";
 
 const SignUp = () => {
   const { signUp, updateUserProfile, setUser } = useAuth();
@@ -25,17 +26,18 @@ const SignUp = () => {
   } = useForm();
   const handleForm = async (data) => {
     try {
-      if (!image) return toast.error("Upload your image");
-      const imageData = new FormData();
-      imageData.append("file", image);
-      imageData.append("upload_preset", import.meta.env.VITE_UPLOAD_PRESET);
-      const { data: imgUrl } = await axios.post(
-        `https://api.cloudinary.com/v1_1/${
-          import.meta.env.VITE_CLOUD_NAME
-        }/image/upload`,
-        imageData
-      );
-      const photo = imgUrl.secure_url;
+      // if (!image) return toast.error("Upload your image");
+      // const imageData = new FormData();
+      // imageData.append("file", image);
+      // imageData.append("upload_preset", import.meta.env.VITE_UPLOAD_PRESET);
+      // const { data: imgUrl } = await axios.post(
+      //   `https://api.cloudinary.com/v1_1/${
+      //     import.meta.env.VITE_CLOUD_NAME
+      //   }/image/upload`,
+      //   imageData
+      // );
+      // const photo = imgUrl.secure_url;
+      const photo = await useUploadImage(image)
       signUp(data.email, data.password)
         .then((result) => {
           const user = result.user;

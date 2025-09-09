@@ -4,6 +4,7 @@ import React, { useState, createContext, useContext } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import { IconMenu2, IconX } from "@tabler/icons-react";
 import { Link, NavLink } from "react-router";
+import { Logo } from "./DashboardLayout";
 
 const SidebarContext = createContext(undefined);
 
@@ -90,10 +91,11 @@ export const MobileSidebar = ({
     <>
       <div
         className={cn(
-          "h-10 px-4 py-4 flex flex-row md:hidden  items-center justify-between bg-neutral-100 dark:bg-neutral-800 w-full"
+          "h-10 px-4 py-7 flex flex-row md:hidden  items-center justify-between bg-black dark:bg-black w-full"
         )}
         {...props}>
-        <div className="flex justify-end z-20 w-full">
+        <div className="flex justify-between items-center w-full">
+          <Logo/>
           <IconMenu2
             className="text-neutral-200 dark:text-neutral-200"
             onClick={() => setOpen(!open)} />
