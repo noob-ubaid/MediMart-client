@@ -5,6 +5,7 @@ import SignUp from "../pages/SignUp/SignUp";
 import MainLayout from "../layouts/MainLayout";
 import PrivateRoute from "../contexts/PrivateRoute";
 import {DashboardLayout} from "../layouts/DashboardLayout";
+import ManageBanner from "../pages/Dashboard/admin/manageBanner/ManageBanner";
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -18,7 +19,13 @@ export const router = createBrowserRouter([
   },
   {
     path: "/dashboard",
-    element: <PrivateRoute><DashboardLayout></DashboardLayout></PrivateRoute>
+    element: <PrivateRoute><DashboardLayout></DashboardLayout></PrivateRoute>,
+    children : [
+      {
+        path:'/dashboard/manageBanner',
+        Component : ManageBanner
+      }
+    ]
   },
   {
     path: "/login",
