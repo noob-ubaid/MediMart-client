@@ -27,10 +27,9 @@ export function NavbarDemo() {
   ];
 
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  if (loading) return <p>Loading...</p>;
 
   return (
-    <div className="w-full sticky top-0">
+    <div className="w-full sticky top-0 z-50">
       <Navbar>
         {/* Desktop Navigation */}
         <NavBody>
