@@ -7,7 +7,7 @@ export const TextGenerateEffect = ({
   words,
   className,
   filter = true,
-  duration = 0.5
+  duration = 0.45
 }) => {
   const [scope, animate] = useAnimate();
   let wordsArray = words.split(" ");
@@ -42,7 +42,7 @@ export const TextGenerateEffect = ({
 
   return (
     <div className={cn("font-secondary", className)}>
-      <div className="mb-8">
+      <div className="mb-6 md:mb-8">
         <div
           className=" text-white/60 leading-snug tracking-wide">
           {renderWords()}
