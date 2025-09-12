@@ -11,6 +11,7 @@ const ShopByCategory = () => {
         return res.data
       }
     })
+    if(isPending) return <p>loading...</p>
   return (
     <div>
       <MainTitle text={`Shop By Category`} />
