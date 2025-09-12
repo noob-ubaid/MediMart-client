@@ -18,6 +18,7 @@ export const HoverEffect = ({ items, className }) => {
           key={item?.id}
           initial={{ y: 15, opacity: 0 }}
           whileInView={{ y: 0, opacity: 1 }}
+          viewport={{once:true}}
           transition={{ duration: 0.6, delay: idx * 0.25 }}
         >
           <div
@@ -64,7 +65,7 @@ export const Card = ({ className, children }) => {
   return (
     <div
       className={cn(
-        "rounded-2xl h-full w-full p-4 overflow-hidden bg-black border border-transparent dark:border-white/[0.2] group-hover:border-slate-700 relative z-20",
+        "rounded-2xl h-full w-full p-4 overflow-hidden bg-black border border-white/[0.2] group-hover:border-slate-700 relative z-20",
         className
       )}
     >
