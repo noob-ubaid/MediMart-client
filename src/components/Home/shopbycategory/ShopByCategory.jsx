@@ -26,7 +26,7 @@ const ShopByCategory = () => {
         <div className="flex items-center justify-center mt-6">
           <motion.button
             layout
-            initial={{ y: 15, opacity: 0 }}
+            initial={{ y: 45, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.5 }}
             onClick={() => setShow(!show)}

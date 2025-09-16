@@ -19,7 +19,8 @@ export const HoverEffect = ({ items = [], className, show }) => {
         <motion.div
           key={idx}
           initial={{ y: 15, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
+          whileInView={{ y: 0, opacity: 1 }}
+          viewport={{once:true}}
           transition={{ duration: 0.6, delay: idx * 0.1 }}
           layout
         >
