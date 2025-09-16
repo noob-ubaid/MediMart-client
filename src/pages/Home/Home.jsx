@@ -9,7 +9,7 @@ const Home = () => {
   return (
     <div className=" px-4 2xl:px-0">
       <Banner />
-      <ShopByCategory />
+      {/* <ShopByCategory /> */}
       <WhyChooseMedimart />
       <DiscountSection />
       <ShareThoughts/>
