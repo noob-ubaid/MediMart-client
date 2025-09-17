@@ -5,7 +5,6 @@ import useAuth from "../../hooks/useAuth";
 import registerImg from "/signup.png";
 import { Link, useLocation, useNavigate } from "react-router";
 import toast from "react-hot-toast";
-import axios from "axios";
 import { useForm } from "react-hook-form";
 import { IoEye, IoEyeOff } from "react-icons/io5";
 import { GridBackgroundDemo } from "../../components/backgroundColor/Background";
@@ -26,33 +25,31 @@ const SignUp = () => {
   } = useForm();
   const handleForm = async (data) => {
     try {
-      const photo = await useUploadImage(image);
-      signUp(data.email, data.password)
-        .then((result) => {
-          const user = result.user;
-          updateUserProfile({ displayName: data.name, photoURL: photo })
-            .then(async () => {
-              toast.success("Successfully logged in");
-              setUser({ ...user, displayName: data.name, photoURL: photo });
-              const userData = {
-                name: user.displayName,
-                email: user.email,
-                role: "user",
-                photo: user.photoURL,
-                createdAt: new Date().toISOString(),
-              };
-              await userDB(userData);
-            })
-            .catch((error) => {
-              toast(error);
-            });
-          navigate(`${location.state ? location.state : "/"}`);
-        })
-        .catch((error) => {
-          toast.error(error);
-        });
+      let photoURL = null;
+      if (image) {
+        photoURL = await useUploadImage(image);
+      }
+      const result = await signUp(data.email, data.password);
+      const user = result.user;
+
+      await updateUserProfile({ displayName: data.name, photoURL });
+
+      const userData = {
+        name: data.name,
+        email: user.email,
+        role: "user",
+        photo: photoURL,
+        createdAt: new Date().toISOString(),
+      };
+      await userDB(userData);
+
+      setUser({ ...user, displayName: data.name, photoURL });
+
+      toast.success("Account created successfully!");
+      navigate(location.state ? location.state : "/");
     } catch (error) {
-      console.log(error);
+      console.error("SignUp Error:", error);
+      toast.error(error.message || "Something went wrong. Please try again.");
     }
   };
   return (

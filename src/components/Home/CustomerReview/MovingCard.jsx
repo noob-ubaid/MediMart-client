@@ -2,6 +2,9 @@ import { cn } from "../../../lib/utils";
 import React, { useEffect, useState } from "react";
 import StarIcon from "@mui/icons-material/Star";
 import Rating from "@mui/material/Rating";
+import dayjs from "dayjs";
+import relativeTime from "dayjs/plugin/relativeTime";
+dayjs.extend(relativeTime);
 export const InfiniteMovingCards = ({
   items,
   direction = "left",
@@ -76,11 +79,15 @@ export const InfiniteMovingCards = ({
       >
         {items.map((item, idx) => (
           <div
-            className="relative w-[350px] max-w-full shrink-0 rounded-2xl border border-b-0 border-zinc-200 bg-[linear-gradient(180deg,#fafafa,#f5f5f5)]  p-5 md:p-6 md:w-[450px] dark:border-zinc-700 dark:bg-[linear-gradient(180deg,#27272a,#18181b)]"
+            className="relative w-[350px] max-w-full shrink-0 rounded-2xl border border-b-0   p-5 md:p-6 md:w-[450px] border-zinc-700 bg-[linear-gradient(180deg,#27272a,#18181b)]"
             key={item.name}
           >
-            <div className="flex items-center gap-3">
-              <img className="size-14 rounded-full" src={item.profile} alt="" />
+            <div className="flex items-center gap-3 border-b border-white/[0.1] pb-4">
+              <img
+                className="size-14 rounded-full bg-center object-cover"
+                src={item.profile}
+                alt=""
+              />
               <div>
                 <p className="text-white font-primary text-xl font-medium">
                   {item.name}
@@ -100,6 +107,20 @@ export const InfiniteMovingCards = ({
                   sx={{ color: "#FFD700", fontSize: 24 }}
                 />
               </div>
+            </div>
+            <p className="mt-4 pb-4 border-b border-white/[0.1] font-secondary text-white/80">
+              {item.feedback}
+            </p>
+            <div className="flex items-center mt-4 justify-between gap-2">
+              <div>
+                <p className="font-primary text-white/80 text-xl font-medium">
+                  {dayjs(item.date).fromNow()}
+                </p>
+              </div>
+
+              <p className="text-green-300 font-primary bg-green-900/40 px-4 py-1 rounded-full text-sm tracking-wide">
+                Verified Purchase
+              </p>
             </div>
           </div>
         ))}
