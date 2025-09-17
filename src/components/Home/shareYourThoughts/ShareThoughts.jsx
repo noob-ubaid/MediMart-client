@@ -6,6 +6,8 @@ import { Link } from "react-router";
 import MainTitle from "../../../shared/MainTitle";
 import useAuth from "../../../hooks/useAuth";
 import { motion } from "framer-motion";
+import { axiosSecure } from "../../../hooks/useAxiosSecure";
+import toast from "react-hot-toast";
 
 const ShareThoughts = () => {
   const { user } = useAuth();
@@ -25,10 +27,25 @@ const ShareThoughts = () => {
     hidden: { opacity: 0, y: 20 },
     show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
   };
-  const handleSubmit = e => {
-    e.preventDefault()
-    
-  }
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const data = {
+      rating:value,
+      name:user.displayName,
+      feedback,
+      profile:user.photoURL,
+      date:new Date(),
+      email:user.email
+    };
+    try{
+      await axiosSecure.post(`/reviews`, data);
+      toast.success("Thanks for your feedback!")
+      setFeedback("");
+      setValue(1);
+    }catch(error){
+      console.log(error)
+    }
+  };
 
   return (
     <section className="py-12">
@@ -83,7 +100,11 @@ const ShareThoughts = () => {
         </motion.div>
 
         {/* Feedback textarea */}
-        <motion.form onSubmit={handleSubmit} variants={itemVariants} className="mt-4">
+        <motion.form
+          onSubmit={handleSubmit}
+          variants={itemVariants}
+          className="mt-4"
+        >
           <p className="text-white font-secondary text-lg">Your Feedback</p>
           <textarea
             value={feedback}
