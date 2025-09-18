@@ -5,6 +5,7 @@ import WhyChooseMedimart from "../../components/Home/WhyChooseMedimar/WhyChooseM
 import DiscountSection from "../../components/Home/Discount/Discount";
 import ShareThoughts from "../../components/Home/shareYourThoughts/ShareThoughts";
 import CustomerReview from "../../components/Home/CustomerReview/CustomerReview";
+import FAQSection from "../../components/Home/Faq/Faq";
 
 const Home = () => {
   return (
@@ -15,6 +16,7 @@ const Home = () => {
       <DiscountSection />
       <CustomerReview/>
       <ShareThoughts/>
+      <FAQSection/>
     </div>
   );
 };

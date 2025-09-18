@@ -48,7 +48,7 @@ const ShareThoughts = () => {
   };
 
   return (
-    <section className="py-12">
+    <section className="">
       {/* Main section title */}
       <MainTitle text="Share your valuable thoughts" />
 
