@@ -64,7 +64,11 @@ export default function FAQSection() {
 
       <div className="space-y-4 mt-6">
         {faqs.map((faq, index) => (
-          <div
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, ease: "easeOut" }}
+            viewport={{ once: true, amount: 0.2 }}
             key={index}
             className="border rounded-xl shadow-sm overflow-hidden bg-gray-900"
           >
@@ -88,7 +92,7 @@ export default function FAQSection() {
                 <SmoothAccordion>{faq.answer}</SmoothAccordion>
               )}
             </AnimatePresence>
-          </div>
+          </motion.div>
         ))}
       </div>
     </section>

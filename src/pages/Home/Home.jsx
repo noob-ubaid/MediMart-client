@@ -6,11 +6,13 @@ import DiscountSection from "../../components/Home/Discount/Discount";
 import ShareThoughts from "../../components/Home/shareYourThoughts/ShareThoughts";
 import CustomerReview from "../../components/Home/CustomerReview/CustomerReview";
 import FAQSection from "../../components/Home/Faq/Faq";
+import HowItWorks from "../../components/Home/HowItWorks/HowItWOrks";
 
 const Home = () => {
   return (
     <div className=" px-4 2xl:px-0">
       <Banner />
+      <HowItWorks/>
       <ShopByCategory />
       <WhyChooseMedimart />
       <DiscountSection />
