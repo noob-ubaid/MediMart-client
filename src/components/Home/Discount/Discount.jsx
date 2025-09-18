@@ -25,7 +25,7 @@ const DiscountSection = () => {
   return (
     <section>
       <MainTitle text={`Exclusive discount for pro members`} />
-      <div className="flex flex-col lg:flex-row items-center justify-between gap-10 bg-gradient-to-r from-purple-900 to-indigo-900 text-white rounded-3xl px-6 py-12 lg:px-12 lg:py-16 mt-12">
+      <div className="flex flex-col lg:flex-row items-center justify-between gap-10 bg-gradient-to-b from-gray-900 to-gray-800 text-white rounded-3xl px-6 py-12 lg:px-12 lg:py-16 mt-12">
         {/* Left Content */}
         <motion.div
           initial={{ opacity: 0, x: -40 }}
@@ -66,7 +66,7 @@ const DiscountSection = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: idx * 0.2 }}
                 viewport={{ once: true }}
-                className="bg-white/10 backdrop-blur-md p-5 rounded-2xl shadow-lg border border-white/20 flex justify-between items-center"
+                className="bg-transparent backdrop-blur-2xl p-5 rounded-2xl shadow-lg border border-white/20 flex justify-between items-center"
               >
                 <div>
                   <h3 className="font-semibold text-lg font-primary">{item.name}</h3>

@@ -58,7 +58,7 @@ const ShareThoughts = () => {
         initial="hidden"
         whileInView="show"
         viewport={{ once: true }}
-        className="mt-8 md:mt-12 p-6 md:p-10 backdrop-blur-2xl bg-gradient-to-br from-gray-900/90 via-black/80 to-gray-800/90 border border-white/[0.2] rounded-2xl shadow-lg"
+        className="mt-8 md:mt-12 p-6 md:p-10 backdrop-blur-2xl bg-gradient-to-b from-gray-900 to-gray-800 border border-white/[0.2] rounded-2xl shadow-lg"
       >
         {/* Subtitle / description */}
         <motion.p
